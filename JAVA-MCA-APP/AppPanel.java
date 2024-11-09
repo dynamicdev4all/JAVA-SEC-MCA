@@ -1,4 +1,7 @@
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -8,15 +11,15 @@ import javax.swing.Timer;
 
 public class AppPanel extends JPanel {
     BufferedImage bgImage;
+    int xAxis = 100;
+    int yAxis = 100;
     Timer timer;
-    int x = 0;
-    int y = 100;
 
     AppPanel() {
         setSize(500, 500);
+        // setBackground(Color.BLUE);
         loadBgImage();
-        appLoop();
-        setFocusable(true);
+        callPaintAgain();
     }
 
     void loadBgImage() {
@@ -28,17 +31,21 @@ public class AppPanel extends JPanel {
         }
     }
 
-    void appLoop() {
-        timer = new Timer(30, (abc) -> {
+    void callPaintAgain() {
+        timer = new Timer(50, (a) -> {
+            // if (xAxis > 500) {
+            //     xAxis = 0;
+            // }
+            xAxis = xAxis + 10;
+            yAxis = yAxis + 10;
             repaint();
         });
         timer.start();
     }
 
     @Override
-    protected void paintComponent(Graphics pen) {
-        super.paintComponent(pen);
-        // TODO Auto-generated method stub
-        pen.drawImage(bgImage, x, y, 120, 120, null);
+    protected void paintComponent(Graphics brush) {
+        super.paintComponent(brush);
+        brush.drawImage(bgImage, xAxis, yAxis, 80, 120, null);
     }
 }
