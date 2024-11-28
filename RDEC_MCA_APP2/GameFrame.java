@@ -1,12 +1,14 @@
 import javax.swing.JFrame;
 
-public class GameFrame extends JFrame {
+public class GameFrame {
+    private JFrame frame = new JFrame();
+
     GameFrame() {
-        setTitle("MCA APP 2");
-        setSize(600, 600);
+        frame.setTitle("MCA APP 2");
+        frame.setSize(600, 600);
         GamePanel gPanel = new GamePanel();
-        add(gPanel);
-        setVisible(true);
+        frame.add(gPanel);
+        frame.setVisible(true);
     }
 
 }
