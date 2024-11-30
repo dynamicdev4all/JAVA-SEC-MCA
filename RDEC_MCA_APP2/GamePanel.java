@@ -15,9 +15,12 @@ public class GamePanel extends JPanel {
     Timer timer;
     int x = 0;
     int y = 0;
+    int coinIndex = 0;
+    Coins c = new Coins();
+    BufferedImage coinImages[] = c.getCoinImages();
     int carCount = 15;
     Car cars[] = new Car[carCount];
-    String carNames[] = { "car.gif", "car2.png","car3.jpeg" };
+    String carNames[] = { "car.gif", "car2.png", "car3.png" };
     // Car car1;
     // Car car2;
     // Car car3;
@@ -39,7 +42,7 @@ public class GamePanel extends JPanel {
         int gap = 30;
         int nameLen = carNames.length;
         for (int i = 0; i < carCount; i++) {
-            cars[i] = new Car(gap, 350, 250, 200, 2, carNames[i % nameLen]);
+            cars[i] = new Car(gap, 350, 210, 200, 2, carNames[i % nameLen]);
             gap = gap + 100 + 50;
         }
     }
@@ -51,18 +54,24 @@ public class GamePanel extends JPanel {
         // car1.paintCar(brush);
         // car2.paintCar(brush);
         // car3.paintCar(brush);
-        showCars(brush);
+        // showCars(brush);
+        showCoins(brush);
 
     }
 
-    void showCars(Graphics brush) {
-        for (int i = 0; i < carCount; i++) {
-            cars[i].paintCar(brush);
-        }
+    // void showCars(Graphics brush) {
+    // for (int i = 0; i < carCount; i++) {
+    // cars[i].paintCar(brush);
+    // }
+    // }
+
+    void showCoins(Graphics brush) {
+        c.paintCoin(brush, coinImages[coinIndex]);
+        System.out.println(coinIndex);
     }
 
     void gameLoop() {
-        timer = new Timer(50, (a) -> {
+        timer = new Timer(300, (a) -> {
             // if (x > 600 || y > 600) {
             // x = 0;
             // y = 0;
@@ -74,6 +83,10 @@ public class GamePanel extends JPanel {
             // car3.moveCarBBottomToTop();
             // moveCars();
             repaint();
+            if(coinIndex==coinImages.length -1){
+                coinIndex = -1;
+            }
+            coinIndex++;
         });
         timer.start();
     }
