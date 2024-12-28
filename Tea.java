@@ -19,9 +19,12 @@
 //     }
 // }
 
+import java.io.Console;
+
 class Animal {
     void move(int a) {
         System.out.println("This is parent move");
+Console.class.isRecord()++
     }
 
     void move(boolean a) {
