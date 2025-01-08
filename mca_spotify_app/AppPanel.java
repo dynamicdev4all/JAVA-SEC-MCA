@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class AppPanel extends JPanel {
+    SongPlayer sPlayer = new SongPlayer();
     Timer timer;
     JButton playPauseButton;
     JButton previousButton;
@@ -80,6 +81,12 @@ public class AppPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 currentSongIndex--;
                 loadImage(list.get(currentSongIndex)._songImage);
+            }
+        });
+        playPauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sPlayer.callStart();//here u have to pass 2 variables one is the song url and the second one is the playing status of the song.
             }
         });
     }
