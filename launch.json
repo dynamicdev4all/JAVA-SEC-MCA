@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "JsonDemo",
+            "request": "launch",
+            "mainClass": "JsonDemo",
+            "projectName": "mca_spotify_app_93f31af0"
+        },
+        {
+            "type": "java",
+            "name": "MusicLaunch",
+            "request": "launch",
+            "mainClass": "MusicLaunch",
+            "projectName": "mca_spotify_app_93f31af0"
+        },
+        {
+            "type": "java",
+            "name": "SongPlayer",
+            "request": "launch",
+            "mainClass": "SongPlayer",
+            "projectName": "mca_spotify_app_93f31af0",
+            "vmArgs":"--module-path \"C:\\Program Files\\JavaFx\\javafx-sdk-21.0.5\\lib\" --add-modules=javafx.controls,javafx.media"
+        }
+    ]
+}
