@@ -86,7 +86,9 @@ public class AppPanel extends JPanel {
         playPauseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sPlayer.callStart();//here u have to pass 2 variables one is the song url and the second one is the playing status of the song.
+                // sPlayer.callStart();//here u have to pass 2 variables one is the song url and
+                // the second one is the playing status of the song.
+                sPlayer.playSong(list.get(currentSongIndex)._audioUrl);
             }
         });
     }
