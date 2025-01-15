@@ -66,7 +66,23 @@ public class Car {
         brush.drawImage(carImage, x, y, w, h, null);
     }
 
-    void moveCarBBottomToTop() {
+    void moveUp() {
         y = y - speed;
+    }
+
+    void moveDown() {
+        y = y + speed;
+    }
+
+    void moveLeft() {
+        x = x - speed;
+    }
+
+    void moveRight() {
+        x = x + speed;
+    }
+
+    void jump(int h) {
+        y = y - h;
     }
 }
