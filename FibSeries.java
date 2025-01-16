@@ -3,7 +3,7 @@ public class FibSeries {
     static int fib(int num) {
         if (num <= 1) {
             return num;
-        }
+        }Re
         return fib(num - 1) + fib(num - 2);
     }
 
