@@ -21,13 +21,13 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class AppPanel extends JPanel {
+public class AppPanel extends JPanel implements GameConstants{
     SongPlayer sPlayer = new SongPlayer();
     Timer timer;
     JButton playPauseButton;
     JButton previousButton;
     JButton nextButton;
-    ArrayList<SongModel> list = SongClient.convertSongs("https://itunes.apple.com/search?term=arijit+singh&limit=25");
+    ArrayList<SongModel> list = SongClient.convertSongs(SONG_URL);
     int currentSongIndex = 0;
     BufferedImage songImage;
 

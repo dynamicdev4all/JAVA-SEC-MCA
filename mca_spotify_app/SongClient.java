@@ -47,7 +47,12 @@ public class SongClient {
 
                     songObject.has("artworkUrl100") ? songObject.getString("artworkUrl100") : "No Song Pic",
 
-                    songObject.has("previewUrl") ? songObject.getString("previewUrl") : "No Song Url");
+                    songObject.has("previewUrl") ? songObject.getString("previewUrl")
+                            : "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3c/ac/99/3cac99b7-b3d0-7770-ec46-df6246d71f19/mzaf_4346138457410138458.plus.aac.p.m4a");
+
+            // if(true){
+            // songList.remove(songObject);
+            // }
 
             songList.add(song);
         }
