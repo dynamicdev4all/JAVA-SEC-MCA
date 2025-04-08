@@ -1,0 +1,15 @@
+{
+  "name": "authapp",
+  "version": "1.0.0",
+  "description": "This is an auth system app built using nodejs, expressjs, mongodb and HTML-CSS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MCA",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  }
+}
