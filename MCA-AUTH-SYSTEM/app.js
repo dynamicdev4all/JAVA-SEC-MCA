@@ -3,6 +3,7 @@ const PORT = 5656;
 const app = express();
 const path = require("path");
 const mongoose = require('mongoose');
+const sendEmail = require('./service/sendMail');
 app.use(express.urlencoded({extended:true}))
 mongoose.connect("mongodb+srv://piebytwo014:piebytwo014@cluster0.iw0d6qp.mongodb.net/user_auth?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
     console.log("Database connection success")
@@ -47,6 +48,7 @@ const exist = await userModel.findOne({email:email});
             })
         await user.save();
         console.log("User created Successfully")
+        sendEmail(email, firstName);
         } catch (error) {
             console.log("Error in Registration ", error)
         }  
@@ -68,9 +70,10 @@ app.post("/login-user", async(request, response)=>{
             console.log("No user found")
         }
 })
-// app.get("/#", (request, response)=>{
-//     response.sendFile(path.join(__dirname, "public", "fourOfour.html"));
-// })
+app.get("/verify-email", (request, response)=>{
+   console.log("Code rec")
+   const code_b = request.query.code;
+})
 
 app.listen(PORT, ()=>{
     console.log(`App running on Port ${PORT}`)

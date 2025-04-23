@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = ()=>{
+const sendEmail = (email, userName)=>{
+
     const mailTransport = nodemailer.createTransport({
         service:"gmail",
         auth:{
@@ -9,13 +10,28 @@ const sendEmail = ()=>{
         }
     })
 
+    const verificationCode = `12${email}34`
+
+    const verificationLink = `http://localhost:5656/verify-email?code=${verificationCode}`
+
     const mailToSend = ({
         from:"test.duck.mail@gmail.com",
-        to:"fibijo5330@f5url.com",
+        to:email,
         subject:"Verification Mail From MCA Dept.",
-        text:"this is a test email from auth app"
-    })
+        html:`<p>Hi ${userName},</p>
+                <br>
+            <p>Your account has been created successfully</p>
+            <br>
+            <p>Please use the link below to verify your account</p>
+            <br>
+            <a href=${verificationLink}>${verificationLink}</a>
+            <br>
+            <p>Thanks & Regards</p>
+            <br>
+            <p>MCA Department</p>
 
+        `
+    })
     mailTransport.sendMail(mailToSend, (err)=>{
         if(err){
             console.log("Mail sent failure")
@@ -25,4 +41,9 @@ const sendEmail = ()=>{
     })
 }
 
-sendEmail();
+const verification = ()=>{
+
+}
+
+
+module.exports={sendEmail,verification};
