@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer');
-
+const jwt = require('jsonwebtoken');
+const JWT_PASSWORD = "this_is_top_secret"
 const sendEmail = (email, userName)=>{
+
+
 
     const mailTransport = nodemailer.createTransport({
         service:"gmail",
@@ -10,7 +13,8 @@ const sendEmail = (email, userName)=>{
         }
     })
 
-    const verificationCode = `12${email}34`
+    // const verificationCode = `12${email}34`
+    const verificationCode = jwt.sign({email}, JWT_PASSWORD, {expiresIn:"5m"})
 
     const verificationLink = `http://localhost:5656/verify-email?code=${verificationCode}`
 
@@ -32,6 +36,8 @@ const sendEmail = (email, userName)=>{
 
         `
     })
+
+
     mailTransport.sendMail(mailToSend, (err)=>{
         if(err){
             console.log("Mail sent failure")
@@ -41,9 +47,21 @@ const sendEmail = (email, userName)=>{
     })
 }
 
-const verification = ()=>{
-
+const verification = (recToken)=>{
+    try {
+       const bag=  jwt.verify(recToken, JWT_PASSWORD);
+       const emailAdd = bag.email;
+       console.log(emailAdd);
+       console.log("Verification Success")
+    } catch (error) {
+        if(jwt.TokenExpiredError){
+            console.log("Token Expired")
+        }else{
+            console.log("Verfication Failed")
+        }
+    }
 }
 
 
-module.exports={sendEmail,verification};
+
+module.exports={sendEmail, verification};

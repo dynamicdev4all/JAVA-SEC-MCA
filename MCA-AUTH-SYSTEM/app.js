@@ -3,13 +3,18 @@ const PORT = 5656;
 const app = express();
 const path = require("path");
 const mongoose = require('mongoose');
-const sendEmail = require('./service/sendMail');
-app.use(express.urlencoded({extended:true}))
+const {sendEmail, verification} = require('./service/sendMail');
+app.use( .urlencoded({extended:true}))
+
+
+
 mongoose.connect("mongodb+srv://piebytwo014:piebytwo014@cluster0.iw0d6qp.mongodb.net/user_auth?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
     console.log("Database connection success")
 }).catch((err)=>{
     console.log("some error in connection ", err) 
 })
+
+
 
 const userSchema = mongoose.Schema({
     firstName:String,
@@ -67,12 +72,17 @@ app.post("/login-user", async(request, response)=>{
                 console.log("The password is incorrect")
             }
         }else{
+            String name2 = "deepak";
+            String name = "deepak";
+
+            name2==name;
             console.log("No user found")
         }
 })
 app.get("/verify-email", (request, response)=>{
    console.log("Code rec")
    const code_b = request.query.code;
+   verification(code_b)
 })
 
 app.listen(PORT, ()=>{
