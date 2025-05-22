@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 <h1>Register Page</h1>-
+ <h1>Register Page</h1>
     <form action="RegisterServlet" method="post">
        <input type="text" name="username" id="username" placeholder="Username">
         <br>

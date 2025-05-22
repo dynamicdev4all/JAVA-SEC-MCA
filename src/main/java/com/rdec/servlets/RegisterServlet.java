@@ -7,14 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import org.bson.Document;
-
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.rdec.config.DatabaseConnection;
-import com.rdec.controllers.RegisterController;
-import com.rdec.models.UserModel;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -28,28 +21,14 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("username");
 		String email = request.getParameter("email");
-		String password0 = request.getParameter("password0");
-		String password1 = request.getParameter("password1");
+		String pwd0 = request.getParameter("password0");
+		String pwd1 = request.getParameter("password1");
 		
-//		System.out.println(name);
-//		System.out.println(RegisterController.validatePassword(password0, password1));
-//		if(RegisterController.validatePassword(password0, password1)) {
-//			System.out.println("Please check your password");
-//		}
-		MongoClient registerClient =  DatabaseConnection.getClient();
+		System.out.println(name);
+		System.out.println(email);
+		System.out.println(pwd0);
+		System.out.println(pwd1);
 		
-		MongoDatabase regsiterDatabase = registerClient.getDatabase("mca_rohit");
-		
-	
-		
-		UserModel m = new UserModel();
-		Document doc = new Document("user1",m);
-		
-		regsiterDatabase.createCollection("users");
-		
-		MongoCollection<Document> collection =  regsiterDatabase.getCollection("users");
-		
-		collection.insertOne(doc);
 	}
 
 }
