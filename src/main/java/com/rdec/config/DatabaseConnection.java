@@ -10,21 +10,32 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 public class DatabaseConnection {
-
-	public static void main(String[] args) {
-		try {
-			String URL = "mongodb+srv://piebytwo014:piebytwo014@cluster0.iw0d6qp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-			ConnectionString str = new ConnectionString(URL);
-			MongoClientSettings settings = MongoClientSettings.builder().applyConnectionString(str).build();
-			MongoClient client = MongoClients.create(settings);
-			MongoDatabase database = client.getDatabase("MCA_JAVA_AUTH");
-			MongoCollection<Document> table = database.getCollection("ABCD");
-			Document newUser = new Document("name", "Rohit").append("email", "piebytwo014@gmail.com");
-			table.insertOne(newUser);
-			System.out.println("Database connection success");
-		} catch (Exception e) {
-			System.out.println("Database Connection failed");
-		}
+	
+	public MongoClient createClient() {
+		String URL = "mongodb+srv://piebytwo014:piebytwo014@cluster0.iw0d6qp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+		ConnectionString str = new ConnectionString(URL);
+		MongoClientSettings settings = MongoClientSettings.builder().applyConnectionString(str).build();
+		MongoClient client = MongoClients.create(settings);
+		return client;
+	}
+	
+	MongoDatabase createDatabase() {
+		MongoDatabase database = createClient().getDatabase("MCA_JAVA_AUTH");
+		return database;
+	}
+	
+	MongoCollection<Document> createTable() {
+		MongoCollection<Document> table = createDatabase().getCollection("ABCD");
+		return table;
+	}
+	
+	public void insertData(String name, String email, String pass1, String pass2) {
+		Document newUser = new Document("name", name).append("email", email).append("pass1", pass1).append("pass2", pass2);
+		createTable().insertOne(newUser);
+		System.out.println("Database connection success");
+	}
+	
+	void fetchData() {
 		
 	}
 

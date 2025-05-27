@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.mongodb.client.MongoDatabase;
+import com.rdec.middlewares.DataValidation;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -23,6 +24,12 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String pwd0 = request.getParameter("password0");
 		String pwd1 = request.getParameter("password1");
+		
+		boolean isPwdValid = DataValidation.isPasswordValid(pwd0, pwd1);
+	
+		
+		
+		
 		
 		System.out.println(name);
 		System.out.println(email);
