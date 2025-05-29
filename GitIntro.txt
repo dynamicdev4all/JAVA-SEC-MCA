@@ -1,0 +1,22 @@
+HOST:
+
+
+1. GitHub account
+2. Create a new Repo
+3. Init a local repo (git init)
+4. to push all the file/folders at once use (git add .) but if u want to push just one single file use (git add <filename/foldername>)
+5. as of now the entire code is i your local repo, now u have to push the code to the remote repo
+6. Now u have to add remote repo to your local machine. to do this use 
+(git remote add origin <url>)
+
+note : this is only for user: use (git pull origin main)
+
+
+
+7. to add msg to your code use command (git commit -m "<msg>")
+8. before pushing the code to the remote repo, verify the branch names, the names must be same
+9. to create a new branch use (git branch <name of the branch>)
+10. to switch b/w branches use command (git checkout <branch name>)
+11. to push the code to the remote repo use command (git push -u origin <branch name>)
+12. to change login id and pwd. use (git config --global user.name "")
+git config --global user.email ""
